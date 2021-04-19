@@ -2125,6 +2125,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _OAuthSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OAuthSettings */ "./OAuthSettings.tsx");
+
 
 
 var ConfigEditor = function ConfigEditor(props) {
@@ -2135,6 +2137,9 @@ var ConfigEditor = function ConfigEditor(props) {
     dataSourceConfig: options,
     onChange: onOptionsChange,
     showAccessOptions: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_OAuthSettings__WEBPACK_IMPORTED_MODULE_2__["OAuthSettings"], {
+    value: options,
+    onChange: onOptionsChange
   }));
 };
 
@@ -2799,6 +2804,138 @@ function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./OAuthSettings.tsx":
+/*!***************************!*\
+  !*** ./OAuthSettings.tsx ***!
+  \***************************/
+/*! exports provided: OAuthSettings, OAuthDetails */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OAuthSettings", function() { return OAuthSettings; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OAuthDetails", function() { return OAuthDetails; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+var FormField = _grafana_ui__WEBPACK_IMPORTED_MODULE_2__["LegacyForms"].FormField,
+    SecretFormField = _grafana_ui__WEBPACK_IMPORTED_MODULE_2__["LegacyForms"].SecretFormField;
+var OAuthSettings = function OAuthSettings(props) {
+  var value = props.value,
+      onChange = props.onChange;
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "page-heading"
+  }, "OAuth settings"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(OAuthDetails, {
+    value: value,
+    onChange: onChange
+  })));
+};
+var OAuthDetails = function OAuthDetails(props) {
+  var value = props.value,
+      onChange = props.onChange;
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-inline"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FormField, {
+    label: "Host",
+    width: 50,
+    value: value.jsonData.oauthUrl,
+    onChange: onChangeHandler('oauthUrl', value, onChange),
+    type: "string",
+    placeholder: "https://sso.wargaming.net/adfs/oauth2/token"
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-inline"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SecretFormField, {
+    label: "User",
+    width: 30,
+    onChange: onSecureChangeHandler('oauthUsername', value, onChange),
+    onReset: onSecureResetHandler('oauthUsername', value, onChange),
+    type: "string",
+    isConfigured: false,
+    placeholder: "username@wargaming.net"
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-inline"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SecretFormField, {
+    label: "Password",
+    width: 30,
+    type: "string",
+    placeholder: "*********",
+    onChange: onSecureChangeHandler('oauthPassword', value, onChange),
+    onReset: onSecureResetHandler('oauthPassword', value, onChange),
+    isConfigured: false
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-inline"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(SecretFormField, {
+    label: "ClientId",
+    width: 30,
+    type: "string",
+    placeholder: "11111111-2222-3333-4444-555555555555",
+    onChange: onSecureChangeHandler('oauthClientId', value, onChange),
+    onReset: onSecureResetHandler('oauthClientId', value, onChange),
+    isConfigured: false
+  }))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form-inline"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "gf-form"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(FormField, {
+    label: "Resource",
+    width: 50,
+    value: value.jsonData.oauthResource,
+    onChange: onChangeHandler('oauthResource', value, onChange),
+    type: "string",
+    placeholder: "cmdb.wgprod.net"
+  })))));
+};
+
+var onChangeHandler = function onChangeHandler(key, value, onChange) {
+  return function (event) {
+    var _a;
+
+    onChange(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value), {
+      jsonData: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value.jsonData), (_a = {}, _a[key] = event.currentTarget.value, _a))
+    }));
+  };
+};
+
+var onSecureChangeHandler = function onSecureChangeHandler(key, value, onChange) {
+  return function (event) {
+    var _a;
+
+    onChange(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value), {
+      secureJsonData: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value.secureJsonData), (_a = {}, _a[key] = event.currentTarget.value, _a))
+    }));
+  };
+};
+
+var onSecureResetHandler = function onSecureResetHandler(key, value, onReset) {
+  return function (event) {
+    var _a, _b;
+
+    onReset(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value), {
+      secureJsonFields: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value.secureJsonFields), (_a = {}, _a[key] = false, _a)),
+      secureJsonData: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, value.secureJsonData), (_b = {}, _b[key] = '', _b))
+    }));
+  };
+};
 
 /***/ }),
 

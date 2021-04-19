@@ -38,6 +38,15 @@ export const defaultQuery: Partial<MyQuery> = {
  */
 export interface MyDataSourceOptions extends DataSourceJsonData {
   apiKey?: string;
+  oauthUrl?: string;
+  oauthResource?: string;
+  oauthEnabled?: boolean;
+}
+
+export interface MySecureJsonData {
+  oauthClientId?: string;
+  oauthUsername?: string;
+  oauthPassword?: string;
 }
 
 export interface MyVariableQuery extends DataQuery {

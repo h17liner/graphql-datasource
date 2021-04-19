@@ -32,5 +32,19 @@
     "grafanaVersion": "7.x.x",
     "grafanaDependency": ">=7.0.0",
     "plugins": []
-  }
+  },
+  "routes": [
+    {
+      "tokenAuth": {
+        "url": "{{.JsonData.oauthUrl}}",
+        "params": {
+          "grant_type": "password",
+          "client_id": "{{.SecureJsonData.oauthClientId}}",
+          "username": "{{.SecureJsonData.oauthUsername}}",
+          "password": "{{.SecureJsonData.oauthPassword}}",
+          "resource": "{{.JsonData.oauthResource}}"
+        }
+      }
+    }
+  ]
 }

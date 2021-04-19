@@ -3,6 +3,8 @@ import { DataSourceHttpSettings } from '@grafana/ui';
 import { DataSourcePluginOptionsEditorProps } from '@grafana/data';
 import { MyDataSourceOptions } from './types';
 
+import { OAuthSettings } from './OAuthSettings';
+
 export type Props = DataSourcePluginOptionsEditorProps<MyDataSourceOptions>;
 export const ConfigEditor = (props: Props) => {
   const { options, onOptionsChange } = props;
@@ -15,6 +17,8 @@ export const ConfigEditor = (props: Props) => {
         onChange={onOptionsChange}
         showAccessOptions={true}
       />
+
+      <OAuthSettings value={options} onChange={onOptionsChange} />
     </>
   );
 };
